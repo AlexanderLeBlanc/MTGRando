@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<staticContent>
+    <mimeMap fileExtension=".json" mimeType="application/json" />
+</staticContent>
+
+<body onload="buildLists()">
+
+<h1>MTG Randomizer</h1>
+<input type="text" id="myInput" onkeyup="searchNonXList()" placeholder="Search for names..">
+
+<ul id="nonX">
+</ul>
+
+</body>
+
+<script>
+    function buildLists() {
+        fetch("NonXKeywords.json")
+        .then(response => response.json())
+        .then(json => {
+            json.keywords.forEach(element => {
+                var li = document.getElementById("nonX").appendChild(document.createElement("li"));
+                var a = li.appendChild(document.createElement("a"));
+                a.appendChild(document.createTextNode(element));
+                li.style.display = "none";
+            });
+        });
+    }
+
+    function searchNonXList() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("nonX");
+      li = ul.getElementsByTagName('li');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      if (filter != "") {
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            } else {
+            li[i].style.display = "none";
+            }
+        }
+      } else {
+        for (i = 0; i < li.length; i++) {
+            li[i].style.display = "none";
+        }
+      }
+    }
+    </script>
+
+</html>
