@@ -83,8 +83,8 @@
       // Loop through all list items, and hide those who don't match the search query
       if (filter != "") {
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
-            txtValue = a.textContent || a.innerText;
+            keyword = li[i].getElementById("randomize").getElementsByTagName("div")[0];
+            txtValue = keyword.textContent || keyword.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
             } else {
