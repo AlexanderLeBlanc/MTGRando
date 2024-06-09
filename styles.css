@@ -1,3 +1,8 @@
+#pageTitle {
+  display: flex;
+  justify-content: center;
+}
+
 #myInput {
   background-image: url('/css/searchicon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
@@ -10,6 +15,13 @@
 }
   
 #keywordsList {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#randomizedKeywordsList {
   /* Remove default list styling */
   list-style-type: none;
   padding: 0;
@@ -29,6 +41,20 @@
   width: 100%;
   justify-content: space-between;
   cursor: pointer;
+}
+
+#elementWrapperR {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 #elementWrapper:hover {
@@ -55,10 +81,13 @@
 
 #columnL {
   width: 50%;
+  padding-right: 10%;
+  padding-left: 5%;
 }
 
 #columnR {
   width: 50%;
+  padding-right: 5%;
 }
 
 #outer {

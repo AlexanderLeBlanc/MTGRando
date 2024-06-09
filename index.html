@@ -11,7 +11,7 @@
 
 <body onload="buildLists()">
 
-<h1>MTG Randomizer</h1>
+<h1 id="pageTitle">MTG Randomizer</h1>
 <div id="outer">
     <div id="columnL">
         <input type="text" id="myInput" onkeyup="searchNonXList()" placeholder="Search for names..">
@@ -28,7 +28,15 @@
         </ul>
     </div>
     <div id="columnR">
-
+        <ul id="randomizedKeywordsList">
+            <li>
+                <div id="elementWrapperR">
+                    <div id="keyword">Hello</div>
+                    <img id="randoArrow" src="Icons/right-arrow.png">
+                    <div id="randoKeyword">Hello Again</div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -53,7 +61,7 @@
 
                 var elementWrapper = li.appendChild(document.createElement("div"));
                 elementWrapper.id = "elementWrapper";
-                elementWrapper.onclick = () => randomizeNonX(element);
+                elementWrapper.onclick = () => randomizeNonX(li);
 
                 var keywordElement = elementWrapper.appendChild(document.createElement("div"));
                 keywordElement.id = "keyword";
@@ -98,8 +106,26 @@
       }
     }
 
-    function randomizeNonX(keyword) {
-        
+    function randomizeNonX(listElement) {
+        ul = document.getElementById("keywordsList");
+        li = ul.getElementsByTagName('li');
+
+        var flag = false;
+
+        while (!flag) {
+            var select  = Math.random(li.length - 1);
+
+            var keyword = listElement[select].querySelector("#keyword").textContent || listElement[select].querySelector("#keyword").innerText;
+            var keywordCur = li[select].querySelector("#keyword").textContent || li[select].querySelector("#keyword").innerText;
+
+            if(keyword !== keywordCur) {
+                flag = true;
+
+
+
+                listElement.remove();
+            }
+        }
     }
     </script>
 
