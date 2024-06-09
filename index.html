@@ -65,7 +65,7 @@
 
                 var elementWrapper = li.appendChild(document.createElement("div"));
                 elementWrapper.id = "elementWrapper";
-                elementWrapper.onclick = () => randomizeNonX(li);
+                elementWrapper.onclick = () => randomizeNonX(element);
 
                 var keywordElement = elementWrapper.appendChild(document.createElement("div"));
                 keywordElement.id = "keyword";
@@ -110,17 +110,25 @@
       }
     }
 
-    function randomizeNonX(listElement) {
+    function randomizeNonX(keyword) {
         var ul = document.getElementById("keywordsList");
         var li = ul.getElementsByTagName('li');
 
         var rli = document.getElementById("randomizedKeywordsList").appendChild(document.createElement("li"));
 
+        var clickedKeyword;
+        li.forEach(element => {
+            var kw = element.querySelector("#keyword").textContent || element.querySelector("#keyword").innerText;
+
+            if (kw === keyword) {
+                clickedKeyword = element;
+            }
+        });
+
         var flag = false;
 
         while (!flag) {
             var select  = Math.random(li.length - 1);
-            var keyword = listElement.querySelector("#keyword").textContent || listElement.querySelector("#keyword").innerText;
             var keywordCur = li[select].querySelector("#keyword").textContent || li[select].querySelector("#keyword").innerText;
 
             if(keyword !== keywordCur) {
@@ -139,7 +147,7 @@
                 var keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur));
                 keywordR2.id = "randoKeywordR"
 
-                listElement.remove();
+                clickedKeyword.remove();
             }
         }
     }
