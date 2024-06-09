@@ -130,6 +130,7 @@
 
         while (!flag) {
             var select  = Math.random(li.length - 1);
+            console.log("Keyword num: " + select + " Length: " + li.length);
             var keywordCur = li[select].querySelector("#keyword").textContent || li[select].querySelector("#keyword").innerText;
 
             if(keyword !== keywordCur) {
