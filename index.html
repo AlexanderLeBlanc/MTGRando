@@ -12,10 +12,34 @@
 <body onload="buildLists()">
 
 <h1>MTG Randomizer</h1>
-<input type="text" id="myInput" onkeyup="searchNonXList()" placeholder="Search for names..">
+<div id="outer">
+    <div id="columnL">
+        <input type="text" id="myInput" onkeyup="searchNonXList()" placeholder="Search for names..">
+        <ul id="keywordsList">
+            <!--<li>
+                <div onclick="randomize()" id="elementWrapper">
+                    <div id="keyword">Hello</div>
+                    <div id="randomize">
+                        <div>Randomize</div>
+                        <img id="randoArrow" src="Icons/right-arrow.png">
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+    </div>
+    <div id="columnR">
 
-<ul id="nonX">
-</ul>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>Attributions:</p>
+        <ul>
+            <li><a href="https://www.flaticon.com/free-icon/right-arrow_545682 ">Right Arrow by Freepik</a></li>
+        </ul>
+    </div>
+</footer>
 
 </body>
 
@@ -25,9 +49,24 @@
         .then(response => response.json())
         .then(json => {
             json.keywords.forEach(element => {
-                var li = document.getElementById("nonX").appendChild(document.createElement("li"));
-                var a = li.appendChild(document.createElement("a"));
-                a.appendChild(document.createTextNode(element));
+                var li = document.getElementById("keywordsList").appendChild(document.createElement("li"));
+
+                var elementWrapper = li.appendChild(document.createElement("div"));
+                elementWrapper.id = "elementWrapper";
+                elementWrapper.onclick = () => randomizeNonX(element);
+
+                var keywordElement = elementWrapper.appendChild(document.createElement("div"));
+                keywordElement.id = "keyword";
+                keywordElement.appendChild(document.createTextNode(element));
+
+                var randomize = elementWrapper.appendChild(document.createElement("div"));
+                randomize.id = "randomize";
+                randomize.appendChild(document.createElement("div")).appendChild(document.createTextNode("Randomize"));
+                
+                var img = randomize.appendChild(document.createElement("img"));
+                img.src = "Icons/right-arrow.png";
+                img.id = "randoArrow";
+
                 li.style.display = "none";
             });
         });
@@ -38,7 +77,7 @@
       var input, filter, ul, li, a, i, txtValue;
       input = document.getElementById('myInput');
       filter = input.value.toUpperCase();
-      ul = document.getElementById("nonX");
+      ul = document.getElementById("keywordsList");
       li = ul.getElementsByTagName('li');
     
       // Loop through all list items, and hide those who don't match the search query
@@ -57,6 +96,10 @@
             li[i].style.display = "none";
         }
       }
+    }
+
+    function randomizeNonX(keyword) {
+        
     }
     </script>
 
