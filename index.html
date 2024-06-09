@@ -83,7 +83,7 @@
       // Loop through all list items, and hide those who don't match the search query
       if (filter != "") {
         for (i = 0; i < li.length; i++) {
-            keyword = li[i].querySelector("#randomize").getElementsByTagName("div")[0];
+            keyword = li[i].querySelector("#keyword");
             txtValue = keyword.textContent || keyword.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
