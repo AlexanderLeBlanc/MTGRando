@@ -120,9 +120,7 @@
 
         while (!flag) {
             var select  = Math.random(li.length - 1);
-
-            var keywordElement = listElement[select].querySelector("#keyword");
-            var keyword = keywordElement.textContent || keywordElement.innerText;
+            var keyword = listElement.querySelector("#keyword").textContent || listElement.querySelector("#keyword").innerText;
             var keywordCur = li[select].querySelector("#keyword").textContent || li[select].querySelector("#keyword").innerText;
 
             if(keyword !== keywordCur) {
