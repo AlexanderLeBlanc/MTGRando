@@ -117,13 +117,14 @@
         var rli = document.getElementById("randomizedKeywordsList").appendChild(document.createElement("li"));
 
         var clickedKeyword;
-        li.forEach(element => {
-            var kw = element.querySelector("#keyword").textContent || element.querySelector("#keyword").innerText;
+
+        for (var i = 0; i < li.length; i++) {
+            var kw = li[i].querySelector("#keyword").textContent || li[i].querySelector("#keyword").innerText;
 
             if (kw === keyword) {
-                clickedKeyword = element;
+                clickedKeyword = li[i];
             }
-        });
+        }
 
         var flag = false;
 
