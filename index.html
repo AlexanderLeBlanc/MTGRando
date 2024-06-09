@@ -3,13 +3,16 @@
 
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 
 <staticContent>
     <mimeMap fileExtension=".json" mimeType="application/json" />
 </staticContent>
 
-<body onload="buildLists()">
+<body class="ubuntu-regular" onload="buildLists()">
 
 <h1 id="pageTitle">MTG Randomizer</h1>
 <div id="outer">
@@ -28,15 +31,16 @@
         </ul>
     </div>
     <div id="columnR">
-        <ul id="randomizedKeywordsList">
+        <h2 id="randoHeader">Randomized Keywords</h2>
+        <!--<ul id="randomizedKeywordsList">
             <li>
                 <div id="elementWrapperR">
-                    <div id="keyword">Hello</div>
+                    <div id="randoKeywordL">Hello</div>
                     <img id="randoArrow" src="Icons/right-arrow.png">
-                    <div id="randoKeyword">Hello Again</div>
+                    <div id="randoKeywordR">Hello Again</div>
                 </div>
             </li>
-        </ul>
+        </ul>-->
     </div>
 </div>
 
@@ -107,8 +111,10 @@
     }
 
     function randomizeNonX(listElement) {
-        ul = document.getElementById("keywordsList");
-        li = ul.getElementsByTagName('li');
+        var ul = document.getElementById("keywordsList");
+        var li = ul.getElementsByTagName('li');
+
+        var rli = document.getElementById("randomizedKeywordsList").appendChild(document.createElement("li"));
 
         var flag = false;
 
@@ -121,7 +127,18 @@
             if(keyword !== keywordCur) {
                 flag = true;
 
+                var elementWrapper = rli.appendChild(document.createElement("div"));
+                elementWrapper.id = "elementWrapperR";
 
+                var keywordR1 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keyword));
+                keywordR1.id = "randoKeywordL"
+
+                var img = elementWrapper.appendChild(document.createElement("img"));
+                img.src = "Icons/right-arrow.png";
+                img.id = "randoArrow";
+
+                var keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur));
+                keywordR2.id = "randoKeywordR"
 
                 listElement.remove();
             }

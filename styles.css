@@ -1,6 +1,20 @@
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #pageTitle {
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1%;
+}
+
+#randoHeader {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
 }
 
 #myInput {
@@ -61,7 +75,16 @@
   background-color: #fafafa;
 }
 
-#keyword {
+#randoKeywordL {
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+}
+
+#randoKeywordR {
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
 }
 
 #randomize {
@@ -73,6 +96,7 @@
   max-width: 50px;
   max-height: 50px;
   padding-left: 10px;
+  width: 33.3%;
 }
   
 #keywordsList li a:hover:not(.header) {
