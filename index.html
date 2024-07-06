@@ -65,7 +65,7 @@
 
                 var elementWrapper = li.appendChild(document.createElement("div"));
                 elementWrapper.id = "elementWrapper";
-                elementWrapper.onclick = () => randomizeKeywords(element);
+                elementWrapper.onclick = () => randomizeKeywords(Object.keys(element)[0]);
 
                 var keywordElement = elementWrapper.appendChild(document.createElement("div"));
                 keywordElement.id = "keyword";
