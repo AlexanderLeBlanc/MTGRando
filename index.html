@@ -258,13 +258,13 @@
 
                     var keywordR2;
                     if (json.keywords[Object.keys(json.keywords[select])[0]] == "X") {
-                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur + weightedRandom(1,7)));
+                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0] + " " + weightedRandom(1,7)));
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "M") {
-                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur));
+                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "MX") {
-                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur));
+                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     } else {
-                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(keywordCur));
+                        keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     }
 
                     keywordR2.id = "randoKeywordR"
