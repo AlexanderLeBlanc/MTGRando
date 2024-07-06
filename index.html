@@ -65,7 +65,7 @@
 
                 var elementWrapper = li.appendChild(document.createElement("div"));
                 elementWrapper.id = "elementWrapper";
-                elementWrapper.onclick = () => randomize(element);
+                elementWrapper.onclick = () => randomizeKeywords(element);
 
                 var keywordElement = elementWrapper.appendChild(document.createElement("div"));
                 keywordElement.id = "keyword";
@@ -219,7 +219,7 @@
       }
     }
 
-    function randomize(keyword) {
+    function randomizeKeywords(keyword) {
         var ul = document.getElementById("keywordsList");
         var li = ul.getElementsByTagName('li');
 
