@@ -257,9 +257,9 @@
                     img.id = "randoArrow";
 
                     var keywordR2;
-                    console.log("searching for: " + Object.keys(json.keywords[select])[0] + " receieved: " + json.keywords[select]);
+                    console.log("searching for: " + Object.keys(json.keywords[select])[0] + " receieved: " + json.keywords[select][Object.keys(json.keywords[select])[0]]);
 
-                    if (json.keywords[select] == "X") {
+                    if (json.keywords[select][Object.keys(json.keywords[select])[0]] == "X") {
                         var rnd = weightedRandom(1,7);
                         console.log("Should output: " + rnd);
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0] + " " + weightedRandom(1,7)));
