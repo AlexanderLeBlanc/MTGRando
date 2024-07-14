@@ -257,6 +257,8 @@
                     img.id = "randoArrow";
 
                     var keywordR2;
+                    console.log("searching for: " + Object.keys(json.keywords[select])[0] + " receieved: " + json.keywords[Object.keys(json.keywords[select])[0]]);
+
                     if (json.keywords[Object.keys(json.keywords[select])[0]] == "X") {
                         var rnd = weightedRandom(1,7);
                         console.log("Should output: " + rnd);
