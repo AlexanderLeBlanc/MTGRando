@@ -258,12 +258,15 @@
 
                     var keywordR2;
                     if (json.keywords[Object.keys(json.keywords[select])[0]] == "X") {
+                        var rnd = weightedRandom(1,7);
+                        console.log("Should output: " + rnd);
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0] + " " + weightedRandom(1,7)));
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "M") {
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "MX") {
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     } else {
+                        console.log("in default")
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     }
 
@@ -282,6 +285,7 @@
         r = (r + Math.random()) / 2;
 
         // Scale to the range [min, max]
+        console.log("Sending num: " + (Math.floor(r * (max - min + 1)) + min));
         return Math.floor(r * (max - min + 1)) + min;
     }
 
