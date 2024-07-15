@@ -257,19 +257,64 @@
                     img.id = "randoArrow";
 
                     var keywordR2;
-                    console.log("searching for: " + Object.keys(json.keywords[select])[0] + " receieved: " + json.keywords[select][Object.keys(json.keywords[select])[0]]);
+                    //console.log("searching for: " + Object.keys(json.keywords[select])[0] + " receieved: " + json.keywords[select][Object.keys(json.keywords[select])[0]]);
 
                     if (json.keywords[select][Object.keys(json.keywords[select])[0]] == "X") {
-                        var rnd = weightedRandom(1,7);
-                        console.log("Should output: " + rnd);
+                        var rnd = weightedRandomN(1,7);
+                        //console.log("Should output: " + rnd);
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0] + " " + weightedRandom(1,7)));
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "M") {
+                        var gen, pips = generateManaCost(1,7);
+                        
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
+
+                        if (gen > 0) {
+                            var generic = randomize.appendChild(document.createElement("img"));
+                            generic.src = "Icons/" + gen + ".png";
+                            generic.id = "genericCost";
+                        }
+
+                        pips.forEach(pip => {
+                            switch(pip) {
+                                case "W":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/W.webp";
+                                    img.id = "genericCost";
+                                    break;
+                                case "B":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/B.webp";
+                                    img.id = "genericCost";
+                                    break;
+                                case "U":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/U.webp";
+                                    img.id = "genericCost";
+                                    break;
+                                case "R":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/R.webp";
+                                    img.id = "genericCost";
+                                    break;
+                                case "G":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/G.webp";
+                                    img.id = "genericCost";
+                                    break;
+                                case "C":
+                                    var img = randomize.appendChild(document.createElement("img"));
+                                    img.src = "Icons/C.webp";
+                                    img.id = "genericCost";
+                                    break;
+                            }
+                        });
+
                     } else if (json.keywords[Object.keys(json.keywords[select])[0]] == "MX") {
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
                     } else {
                         console.log("in default")
                         keywordR2 = elementWrapper.appendChild(document.createElement("div")).appendChild(document.createTextNode(Object.keys(json.keywords[select])[0]));
+
                     }
 
                     keywordR2.id = "randoKeywordR"
@@ -280,15 +325,68 @@
         });
     }
 
-    function weightedRandom(min, max) {
-        const middle = (max + min) / 2;
-        let r = Math.random();
-        // Adjust the distribution: Triangular distribution
-        r = (r + Math.random()) / 2;
+    function weightedRandomN(min, max) {
+        // Generate a random number between 0 and 1
+        let random = Math.random();
+        
+        // Square the random number to bias it towards the lower end
+        let biasedRandom = Math.pow(random, 2);
+        
+        // Scale and shift the biased random number to the desired range
+        return min + (max - min) * biasedRandom;
+    }
 
-        // Scale to the range [min, max]
-        console.log("Sending num: " + (Math.floor(r * (max - min + 1)) + min));
-        return Math.floor(r * (max - min + 1)) + min;
+    function weightedRandomMana(min, max) {
+        let sum = 0;
+        for (let i = 0; i < biasFactor; i++) {
+            sum += Math.random();
+        }
+        let average = sum / biasFactor;
+        return Math.floor(min + average * (max - min + 1));
+    }
+
+    function getBiasedPipCount() {
+        const random = Math.random();
+        if (random < 0.6) return 1; // 60% chance
+        if (random < 0.9) return 2; // 30% chance
+        return 3;                  // 10% chance
+    }
+
+    function getAdjustedPipCount(manaValue) {
+        let basePipCount = getBiasedPipCount();
+        if (manaValue > 5 && basePipCount != 3) {
+            basePipCount += 1;
+        }
+        if (manaValue > 8 && basePipCount != 3) {
+            basePipCount += 1;
+        }
+        return Math.min(basePipCount, manaValue); // Ensure pip count does not exceed mana value
+    }
+
+    const colors = ['W', 'U', 'B', 'R', 'G', 'C']; // White, Blue, Black, Red, Green
+
+    function getRandomManaColors(pipCount) {
+        let pips = [];
+        for (let i = 0; i < pipCount; i++) {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            pips.push(randomColor);
+        }
+        return pips;
+    }
+
+    function generateManaCost(min, max) {
+        const manaValue = getBiasedRandomManaValue(min, max);
+        let pipCount = getAdjustedPipCount(manaValue);
+
+        // Ensure the pip count does not exceed the mana value
+        pipCount = Math.min(pipCount, manaValue);
+
+        const pips = getRandomManaColors(pipCount);
+
+        return {
+            manaValue: manaValue - pips.length,
+            pips: pips
+        };
     }
 
     function getCookie(cname) {
